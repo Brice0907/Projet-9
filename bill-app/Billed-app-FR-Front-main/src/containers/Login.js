@@ -36,12 +36,14 @@ export default class Login {
       })
 
   }
-  // tp ligne 44-45 value property of null -> changement de ca "employee-email-input" en ca admin-email-input
   handleSubmitAdmin = e => {
     e.preventDefault()
     const user = {
       type: "Admin",
+      // Débogage connection en tant qu'Administrateur
+      // value property of null -> changement de "employee-email-input" en "admin-email-input"
       email: e.target.querySelector(`input[data-testid="admin-email-input"]`).value,
+      // value property of null -> changement de "employee-password-input" en "admin-password-input"
       password: e.target.querySelector(`input[data-testid="admin-password-input"]`).value,
       status: "connected"
     }

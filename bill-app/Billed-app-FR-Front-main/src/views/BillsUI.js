@@ -17,14 +17,22 @@ const row = (bill) => {
       </td>
     </tr>
     `)
-  }
-
+}
+// Débogage affichage du tableau
 const rows = (data) => {
-  return (data && data.length) ? data.map(bill => row(bill)).join("") : ""
+  // On attend notre condition que data soit true et que le tableau soit pas vide
+  if (data && data.length) {
+    // On trie le tableau dans l'odre décroissant
+    data.sort((a, b) => new Date(b.date) - new Date(a.date));
+    // puis return tableau trié
+    return data.map(bill => row(bill)).join("")
+  } else {
+    return "";
+  }
 }
 
 export default ({ data: bills, loading, error }) => {
-  
+
   const modal = () => (`
     <div class="modal fade" id="modaleFile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -47,7 +55,7 @@ export default ({ data: bills, loading, error }) => {
   } else if (error) {
     return ErrorPage(error)
   }
-  
+
   return (`
     <div class='layout'>
       ${VerticalLayout(120)}
